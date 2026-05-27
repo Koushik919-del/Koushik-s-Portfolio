@@ -1,6 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
-from constant import *
+
 
 st.set_page_config(page_title="Main Page", page_icon="🏠", layout="wide",initial_sidebar_state="collapsed") 
 
