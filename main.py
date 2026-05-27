@@ -1,6 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
-
+from constant import *
 
 st.set_page_config(page_title="Main Page", page_icon="🏠", layout="wide",initial_sidebar_state="collapsed") 
 
@@ -20,11 +20,12 @@ with body:
 
     with col1:
         st.write(info['brief'])
-        st.markdown(f"###### 😄 Name: Koushik Tummepalli")
-        st.markdown(f"###### 👉 Study: High School Student")
-        st.markdown(f"###### 📍 Location: Menifee, CA")
-        st.markdown(f"###### 📚 Interest: Coding, Engineering, and AI")
-        st.markdown("###### 🟡 Favorite Color: Blue")
+        st.markdown(f"###### 😄 Name: {info['name']}")
+        st.markdown(f"###### 👉 Study: {info['study']}")
+        st.markdown(f"###### 📍 Location: {info['location']}")
+        st.markdown(f"###### 📚 Interest: {info['interest']}")
+        st.markdown("###### 🟡 Favorite Color: Yellow")
+        st.markdown(f"###### 👀 Linkedin: {linkedin_link}")
         
         with open("src/resume.pdf", "rb") as file:
             pdf_file = file.read()
