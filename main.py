@@ -1,58 +1,31 @@
-import streamlit as st
-import streamlit.components.v1 as components
-from constant import *
+# constant.py
 
-st.set_page_config(page_title="Main Page", page_icon="🏠", layout="wide",initial_sidebar_state="collapsed") 
+# Navigation Menu placeholder (if you don't have a multi-page setup yet)
+def menu():
+    pass  # Streamlit 1.30+ handles multi-page natively via the 'pages/' folder, 
+          # but we keep this function here so your main code doesn't crash.
 
-margin_r,body,margin_l = st.columns([0.4, 3, 0.4])
+# Social links
+linkedin_link = "https://www.linkedin.com/in/yourprofile"
+github_link = "https://github.com/yourusername"
 
-with body:
-    menu()
+# Control the grid size for your skills section
+skill_col_size = 4
 
-    #sidebar --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    with st.sidebar:
-        st.success("Select a page above.")
-        
-    #main page --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    st.header("About Me",divider='rainbow')
-
-    col1, col2, col3 = st.columns([1.3 ,0.2, 1])
-
-    with col1:
-        st.write(info['brief'])
-        st.markdown(f"###### 😄 Name: {info['name']}")
-        st.markdown(f"###### 👉 Study: {info['study']}")
-        st.markdown(f"###### 📍 Location: {info['location']}")
-        st.markdown(f"###### 📚 Interest: {info['interest']}")
-        st.markdown("###### 🟡 Favorite Color: Yellow")
-        st.markdown(f"###### 👀 Linkedin: {linkedin_link}")
-        
-        with open("src/resume.pdf", "rb") as file:
-            pdf_file = file.read()
-
-        st.download_button(
-            label="Download my :blue[resume]",
-            data=pdf_file,
-            file_name="resume",
-            mime="application/pdf")
-
-    with col3:
-        st.image("src/portrait.jpeg", width=360)
-
-    # skills --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    st.subheader("My :blue[skills] ⚒️",divider='rainbow') #,divider='rainbow'
-
-    def skill_tab():
-        rows,cols = len(info['skills'])//skill_col_size, skill_col_size
-        skills = iter(info['skills'])
-        if len(info['skills'])%skill_col_size!=0:
-            rows+=1
-        for x in range(rows):
-            columns = st.columns(skill_col_size)
-            for index_ in range(skill_col_size):
-                try:
-                    columns[index_].button(next(skills))
-                except:
-                    break
-    with st.spinner(text="Loading section..."):
-        skill_tab()
+# All your personal portfolio details
+info = {
+    "name": "Your Name Here",
+    "study": "B.S. Computer Science / Robotics Engineering",
+    "location": "California, USA",
+    "interest": "AI Automation, Hardware Hacking, Rapid Prototyping",
+    "brief": """
+    I'm an engineer and builder specializing in the intersection of intelligent software 
+    and physical hardware. I love turning complex logic into real-world applications 
+    and fast prototypes that solve immediate problems. 
+    """,
+    "skills": [
+        "Python", "C++", "Streamlit", "PyTorch", 
+        "OpenCV", "Git", "Arduino", "Linux", 
+        "CAD Design", "ROS 2", "SQL", "Docker"
+    ]
+}
